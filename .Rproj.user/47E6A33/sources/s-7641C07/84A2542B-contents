@@ -1,0 +1,27 @@
+# Admin Tools
+library(tidyverse)
+
+# For getting sql for HEPP stuff - finding students not engaged / not enrolled etc
+
+# Read In Accumulator Data
+
+aa <- read_csv("~/Data/acc sample.csv") # crazy big
+
+# Read in weekly hits data
+
+scihistw0 <- read_csv("~/Data/hits sci week ending 20190217.csv")
+scihistw0$week <- 0
+scihistw1 <- read_csv("~/Data/hits sci week ending 20190224.csv")
+scihistw1$week <- 1
+
+# Read in student list
+
+# Read Last Access Check data
+
+lastAccess <- read_csv("~/Data/Last Site Acces SCI.csv") %>% # needs grouping: mutate(last_access = max(last_access, na.rm = T))%>% unique() 
+lastAccessOverall <- lastAccess %>% unique() %>%
+  group_by(student_name, id, overall_last_access) %>% 
+  summarise(subjects_no_access_count = sum(is.na(last_access))) %>% 
+  unique() %>%
+  arrange(desc(subjects_no_access_count))
+
