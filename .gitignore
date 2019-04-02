@@ -1,2 +1,7 @@
 .*
 !/.gitignore
+.Rproj.user
+*.csv
+*.pdf
+*.xlsx
+*.xls
