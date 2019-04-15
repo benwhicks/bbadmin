@@ -1,0 +1,1068 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20191.19.0321.1733                               -->
+<workbook source-build='2019.1.2 (20191.19.0321.1733)' source-platform='win' version='18.1' xml:base='https://bi.csu.edu.au' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <repository-location id='DoGSStudentPerformanceReport' path='/t/CSUAnalytics-Prod/workbooks' revision='4.4' site='CSUAnalytics-Prod' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='Students+ (DoGS)' inline='true' name='federated.0w1fcuu1nr24zd1em3j9p1bvesnn' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='DoGS' name='excel-direct.1l61kwe196vuat14v3ici06304en'>
+            <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='D:/Users/bhicks/Documents/bbadmin/Tableau/DoGS/DoGS 20190415.xlsx' interpretationMode='0' password='' server='' validate='no' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation join='left' type='join'>
+          <clause type='join'>
+            <expression op='AND'>
+              <expression op='='>
+                <expression op='[Students].[Session]' />
+                <expression op='[Marks].[Session]' />
+              </expression>
+              <expression op='='>
+                <expression op='[Students].[Subject Id]' />
+                <expression op='[Marks].[Subject Id]' />
+              </expression>
+              <expression op='='>
+                <expression op='[Students].[Student]' />
+                <expression op='[Marks].[Student]' />
+              </expression>
+            </expression>
+          </clause>
+          <relation connection='excel-direct.1l61kwe196vuat14v3ici06304en' name='Students' table='[Students$]' type='table'>
+            <columns gridOrigin='A1:E930:no:A1:E930:0' header='yes' outcome='6'>
+              <column datatype='string' name='Session' ordinal='0' />
+              <column datatype='string' name='Subject Id' ordinal='1' />
+              <column datatype='string' name='Subject Name' ordinal='2' />
+              <column datatype='string' name='Student' ordinal='3' />
+              <column datatype='string' name='Cohort' ordinal='4' />
+            </columns>
+          </relation>
+          <relation connection='excel-direct.1l61kwe196vuat14v3ici06304en' name='Marks' table='[Marks$]' type='table'>
+            <columns gridOrigin='A1:I1041:no:A1:I1041:0' header='yes' outcome='6'>
+              <column datatype='string' name='Session' ordinal='0' />
+              <column datatype='string' name='Subject Id' ordinal='1' />
+              <column datatype='string' name='Subject Name' ordinal='2' />
+              <column datatype='string' name='Student' ordinal='3' />
+              <column datatype='string' name='GC Column' ordinal='4' />
+              <column datatype='real' name='Attempt' ordinal='5' />
+              <column datatype='string' name='Manual Grade' ordinal='6' />
+              <column datatype='string' name='Manual Score' ordinal='7' />
+              <column datatype='real' name='Score' ordinal='8' />
+            </columns>
+          </relation>
+        </relation>
+        <cols>
+          <map key='[Attempt]' value='[Marks].[Attempt]' />
+          <map key='[Cohort]' value='[Students].[Cohort]' />
+          <map key='[GC Column]' value='[Marks].[GC Column]' />
+          <map key='[Manual Grade]' value='[Marks].[Manual Grade]' />
+          <map key='[Manual Score]' value='[Marks].[Manual Score]' />
+          <map key='[Score]' value='[Marks].[Score]' />
+          <map key='[Session (Marks)]' value='[Marks].[Session]' />
+          <map key='[Session]' value='[Students].[Session]' />
+          <map key='[Student (Marks)]' value='[Marks].[Student]' />
+          <map key='[Student]' value='[Students].[Student]' />
+          <map key='[Subject Id (Marks)]' value='[Marks].[Subject Id]' />
+          <map key='[Subject Id]' value='[Students].[Subject Id]' />
+          <map key='[Subject Name (Marks)]' value='[Marks].[Subject Name]' />
+          <map key='[Subject Name]' value='[Students].[Subject Name]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>Session</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Session]</local-name>
+            <parent-name>[Students]</parent-name>
+            <remote-alias>Session</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Subject Id</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Subject Id]</local-name>
+            <parent-name>[Students]</parent-name>
+            <remote-alias>Subject Id</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Subject Name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Subject Name]</local-name>
+            <parent-name>[Students]</parent-name>
+            <remote-alias>Subject Name</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Student</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Student]</local-name>
+            <parent-name>[Students]</parent-name>
+            <remote-alias>Student</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Cohort</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Cohort]</local-name>
+            <parent-name>[Students]</parent-name>
+            <remote-alias>Cohort</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Students]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>4</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:E930:no:A1:E930:0&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>6</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Session</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Session (Marks)]</local-name>
+            <parent-name>[Marks]</parent-name>
+            <remote-alias>Session</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Subject Id</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Subject Id (Marks)]</local-name>
+            <parent-name>[Marks]</parent-name>
+            <remote-alias>Subject Id</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Subject Name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Subject Name (Marks)]</local-name>
+            <parent-name>[Marks]</parent-name>
+            <remote-alias>Subject Name</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Student</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Student (Marks)]</local-name>
+            <parent-name>[Marks]</parent-name>
+            <remote-alias>Student</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>GC Column</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[GC Column]</local-name>
+            <parent-name>[Marks]</parent-name>
+            <remote-alias>GC Column</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Attempt</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Attempt]</local-name>
+            <parent-name>[Marks]</parent-name>
+            <remote-alias>Attempt</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Manual Grade</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Manual Grade]</local-name>
+            <parent-name>[Marks]</parent-name>
+            <remote-alias>Manual Grade</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Manual Score</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Manual Score]</local-name>
+            <parent-name>[Marks]</parent-name>
+            <remote-alias>Manual Score</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RAU_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Score</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Score]</local-name>
+            <parent-name>[Marks]</parent-name>
+            <remote-alias>Score</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Marks]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>4</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:I1041:no:A1:I1041:0&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>6</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Subject' datatype='string' name='[Calculation_852587762564993024]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='Mid([Subject Id], 3, 6) + CHAR(10) + &#13;&#10;  &quot; (&quot; + [Subject Name] + &quot;)&quot;' />
+      </column>
+      <column caption='Exclude GC Columns' datatype='boolean' name='[Calculation_852587762565660673]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='If ( [GC Column] = &quot;Learning Journal Tasks Weeks 1 - 4&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Tasks Weeks 5 - 10&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Tasks Weeks 5-10&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Report and Final Submission&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Main Claim&quot; and Mid([Subject Id], 3, 6) = &quot;COM173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Essay and Argument Plans&quot; and Mid([Subject Id], 3, 6) = &quot;COM173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Oral Presentation&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Essay/Report&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Writing Portfolio&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( FIND([GC Column], &quot;Score&quot;) = 0 and Mid([Subject Id], 3, 6) = &quot;STA172&quot; ) or&#13;&#10;    [GC Column] = &quot;Administrative Override&quot; then&#13;&#10;    FALSE&#13;&#10;Else&#13;&#10;    TRUE&#13;&#10;End' />
+      </column>
+      <column caption='Year' datatype='string' name='[Calculation_852587762566258690]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='Left([Session], 4)' />
+      </column>
+      <column datatype='string' name='[Cohort]' role='dimension' type='nominal' />
+      <column datatype='string' name='[GC Column]' role='dimension' type='nominal' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='string' name='[Student]' role='dimension' type='nominal' />
+      <column-instance column='[Cohort]' derivation='None' name='[none:Cohort:nk]' pivot='key' type='nominal' />
+      <group caption='Action (Subject,Cohort,GC Column,Student)' hidden='true' name='[Action (Subject,Cohort,GC Column,Student)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_852587762564993024]' />
+          <groupfilter function='level-members' level='[Cohort]' />
+          <groupfilter function='level-members' level='[GC Column]' />
+          <groupfilter function='level-members' level='[Student]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Subject,Cohort,Student)' hidden='true' name='[Action (Subject,Cohort,Student)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_852587762564993024]' />
+          <groupfilter function='level-members' level='[Cohort]' />
+          <groupfilter function='level-members' level='[Student]' />
+        </groupfilter>
+      </group>
+      <group caption='Action (Subject,Student)' hidden='true' name='[Action (Subject,Student)]' name-style='unqualified' user:auto-column='sheet_link'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Calculation_852587762564993024]' />
+          <groupfilter function='level-members' level='[Student]' />
+        </groupfilter>
+      </group>
+      <layout dim-ordering='alphabetic' dim-percentage='0.686398' measure-ordering='alphabetic' measure-percentage='0.313602' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:Cohort:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;A&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;D&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;W&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;PT&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;B&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Australia&quot;' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+    </datasource>
+  </datasources>
+  <shared-views>
+    <shared-view name='federated.0w1fcuu1nr24zd1em3j9p1bvesnn'>
+      <datasources>
+        <datasource caption='Students+ (DoGS)' name='federated.0w1fcuu1nr24zd1em3j9p1bvesnn' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0w1fcuu1nr24zd1em3j9p1bvesnn'>
+        <column caption='Exclude GC Columns' datatype='boolean' name='[Calculation_852587762565660673]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='If ( [GC Column] = &quot;Learning Journal Tasks Weeks 1 - 4&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Tasks Weeks 5 - 10&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Tasks Weeks 5-10&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Report and Final Submission&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Main Claim&quot; and Mid([Subject Id], 3, 6) = &quot;COM173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Essay and Argument Plans&quot; and Mid([Subject Id], 3, 6) = &quot;COM173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Oral Presentation&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Essay/Report&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Writing Portfolio&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( FIND([GC Column], &quot;Score&quot;) = 0 and Mid([Subject Id], 3, 6) = &quot;STA172&quot; ) or&#13;&#10;    [GC Column] = &quot;Administrative Override&quot; then&#13;&#10;    FALSE&#13;&#10;Else&#13;&#10;    TRUE&#13;&#10;End' />
+        </column>
+        <column caption='Year' datatype='string' name='[Calculation_852587762566258690]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='Left([Session], 4)' />
+        </column>
+        <column-instance column='[Calculation_852587762565660673]' derivation='None' name='[none:Calculation_852587762565660673:nk]' pivot='key' type='nominal' />
+        <column-instance column='[Calculation_852587762566258690]' derivation='None' name='[none:Calculation_852587762566258690:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <filter class='categorical' column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762565660673:nk]'>
+        <groupfilter function='member' level='[none:Calculation_852587762565660673:nk]' member='true' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+      </filter>
+      <filter class='categorical' column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762566258690:nk]'>
+        <groupfilter function='level-members' level='[none:Calculation_852587762566258690:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+      </filter>
+    </shared-view>
+  </shared-views>
+  <actions>
+    <action caption='Show Student Marks' name='[Action1]'>
+      <activation auto-clear='true' />
+      <source dashboard='DoGS Student Perfomance Report' type='sheet' />
+      <link caption='Show Student Marks' delimiter=',' escape='\' expression='tsl:Marks%20for%20a%20Student?%5Bfederated.0w1fcuu1nr24zd1em3j9p1bvesnn%5D.%5BCalculation_852587762564993024%5D~s0=&lt;[Calculation_852587762564993024]~na&gt;&amp;%5Bfederated.0w1fcuu1nr24zd1em3j9p1bvesnn%5D.%5BStudent%5D~s0=&lt;[Student]~na&gt;' include-null='true' multi-select='true' url-escape='true' />
+      <command command='tsc:tsl-filter'>
+        <param name='on-empty' value='none' />
+        <param name='target' value='Marks for a Student' />
+      </command>
+    </action>
+    <datasources>
+      <datasource caption='Students+ (DoGS)' name='federated.0w1fcuu1nr24zd1em3j9p1bvesnn' />
+    </datasources>
+    <datasource-dependencies datasource='federated.0w1fcuu1nr24zd1em3j9p1bvesnn'>
+      <column caption='Subject' datatype='string' name='[Calculation_852587762564993024]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='Mid([Subject Id], 3, 6) + CHAR(10) + &#13;&#10;  &quot; (&quot; + [Subject Name] + &quot;)&quot;' />
+      </column>
+      <column datatype='string' name='[Student]' role='dimension' type='nominal' />
+    </datasource-dependencies>
+  </actions>
+  <worksheets>
+    <worksheet name='Marks for a Subject'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>Marks by Cohort</run>
+            <run>Æ&#10;</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Students+ (DoGS)' name='federated.0w1fcuu1nr24zd1em3j9p1bvesnn' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0w1fcuu1nr24zd1em3j9p1bvesnn'>
+            <column caption='Subject' datatype='string' name='[Calculation_852587762564993024]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='Mid([Subject Id], 3, 6) + CHAR(10) + &#13;&#10;  &quot; (&quot; + [Subject Name] + &quot;)&quot;' />
+            </column>
+            <column caption='Exclude GC Columns' datatype='boolean' name='[Calculation_852587762565660673]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='If ( [GC Column] = &quot;Learning Journal Tasks Weeks 1 - 4&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Tasks Weeks 5 - 10&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Tasks Weeks 5-10&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Report and Final Submission&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Main Claim&quot; and Mid([Subject Id], 3, 6) = &quot;COM173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Essay and Argument Plans&quot; and Mid([Subject Id], 3, 6) = &quot;COM173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Oral Presentation&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Essay/Report&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Writing Portfolio&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( FIND([GC Column], &quot;Score&quot;) = 0 and Mid([Subject Id], 3, 6) = &quot;STA172&quot; ) or&#13;&#10;    [GC Column] = &quot;Administrative Override&quot; then&#13;&#10;    FALSE&#13;&#10;Else&#13;&#10;    TRUE&#13;&#10;End' />
+            </column>
+            <column caption='Year' datatype='string' name='[Calculation_852587762566258690]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='Left([Session], 4)' />
+            </column>
+            <column datatype='string' name='[Cohort]' role='dimension' type='nominal' />
+            <column datatype='string' name='[GC Column]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Score]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Session]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Student]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Subject Id]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Subject Name]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_852587762564993024]' derivation='None' name='[none:Calculation_852587762564993024:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_852587762565660673]' derivation='None' name='[none:Calculation_852587762565660673:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_852587762566258690]' derivation='None' name='[none:Calculation_852587762566258690:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cohort]' derivation='None' name='[none:Cohort:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Session]' derivation='None' name='[none:Session:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Student]' derivation='None' name='[none:Student:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Score]' derivation='Sum' name='[sum:Score:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762564993024:nk]'>
+            <groupfilter function='level-members' level='[none:Calculation_852587762564993024:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Session:nk]'>
+            <groupfilter function='level-members' level='[none:Session:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762565660673:nk]</column>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762566258690:nk]</column>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Session:nk]</column>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762564993024:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' field-type='quantitative' max='100.0' min='0.0' range-type='fixed' scope='rows' type='space' />
+            <format attr='subtitle' class='0' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' scope='rows' value='' />
+            <format attr='auto-subtitle' class='0' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' scope='rows' value='true' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Cohort:nk]' value='82' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='size-bar' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' field-type='quantitative' max-size='1' min-size='0.005' type='centersize' />
+            <encoding attr='color' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' reverse='true' type='custom-interpolated'>
+              <color-palette custom='true' name='' type='ordered-diverging'>
+                <color>#9e3d22</color>
+                <color>#ad4523</color>
+                <color>#bc4d23</color>
+                <color>#cb5522</color>
+                <color>#d95e21</color>
+                <color>#e76820</color>
+                <color>#ee7725</color>
+                <color>#f58a30</color>
+                <color>#fa9e3f</color>
+                <color>#fdb053</color>
+                <color>#ffc171</color>
+                <color>#d9d5c9</color>
+                <color>#dcdcdc</color>
+                <color>#dfdfdf</color>
+                <color>#e3e3e3</color>
+                <color>#e6e6e6</color>
+                <color>#eaeaea</color>
+                <color>#ededed</color>
+                <color>#f1f1f1</color>
+                <color>#f4f4f4</color>
+                <color>#f8f8f8</color>
+                <color>#fbfbfb</color>
+                <color>#ffffff</color>
+              </color-palette>
+            </encoding>
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <color column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Cohort:nk]' />
+              <lod column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Student:nk]' />
+            </encodings>
+            <reference-line axis-column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' boxplot-mark-exclusion='false' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline0' label-type='automatic' probability='95' scope='per-cell' symmetric='false' value-column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.25' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]</rows>
+        <cols>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Cohort:nk]</cols>
+      </table>
+      <simple-id uuid='{93665B4A-0824-49D6-B96B-48B1F44D59E8}' />
+    </worksheet>
+    <worksheet name='Student Detail'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Students+ (DoGS)' name='federated.0w1fcuu1nr24zd1em3j9p1bvesnn' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0w1fcuu1nr24zd1em3j9p1bvesnn'>
+            <column caption='Subject' datatype='string' name='[Calculation_852587762564993024]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='Mid([Subject Id], 3, 6) + CHAR(10) + &#13;&#10;  &quot; (&quot; + [Subject Name] + &quot;)&quot;' />
+            </column>
+            <column caption='Exclude GC Columns' datatype='boolean' name='[Calculation_852587762565660673]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='If ( [GC Column] = &quot;Learning Journal Tasks Weeks 1 - 4&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Tasks Weeks 5 - 10&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Tasks Weeks 5-10&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Report and Final Submission&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Main Claim&quot; and Mid([Subject Id], 3, 6) = &quot;COM173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Essay and Argument Plans&quot; and Mid([Subject Id], 3, 6) = &quot;COM173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Oral Presentation&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Essay/Report&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Writing Portfolio&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( FIND([GC Column], &quot;Score&quot;) = 0 and Mid([Subject Id], 3, 6) = &quot;STA172&quot; ) or&#13;&#10;    [GC Column] = &quot;Administrative Override&quot; then&#13;&#10;    FALSE&#13;&#10;Else&#13;&#10;    TRUE&#13;&#10;End' />
+            </column>
+            <column caption='Year' datatype='string' name='[Calculation_852587762566258690]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='Left([Session], 4)' />
+            </column>
+            <column datatype='string' name='[Cohort]' role='dimension' type='nominal' />
+            <column datatype='string' name='[GC Column]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Score]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Session]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Student]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Subject Id]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Subject Name]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_852587762565660673]' derivation='None' name='[none:Calculation_852587762565660673:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_852587762566258690]' derivation='None' name='[none:Calculation_852587762566258690:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cohort]' derivation='None' name='[none:Cohort:nk]' pivot='key' type='nominal' />
+            <column-instance column='[GC Column]' derivation='None' name='[none:GC Column:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Student]' derivation='None' name='[none:Student:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Subject Id]' derivation='None' name='[none:Subject Id:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Score]' derivation='Sum' name='[sum:Score:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[Action (Subject,Cohort,GC Column,Student)]'>
+            <groupfilter function='crossjoin' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_852587762564993024]' />
+              <groupfilter function='level-members' level='[Cohort]' />
+              <groupfilter function='level-members' level='[GC Column]' />
+              <groupfilter function='level-members' level='[Student]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[Action (Subject,Cohort,Student)]'>
+            <groupfilter function='crossjoin' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Calculation_852587762564993024]' />
+              <groupfilter function='level-members' level='[Cohort]' />
+              <groupfilter function='level-members' level='[Student]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[Action (Subject,Student)]'>
+            <groupfilter function='crossjoin' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+              <groupfilter function='empty-level' member='[Calculation_852587762564993024]' />
+              <groupfilter function='empty-level' member='[Student]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:GC Column:nk]'>
+            <groupfilter expression='ISNULL([GC Column]) OR (NOT(STARTSWITH([GC Column], &apos;Null&apos;)))' function='filter' user:ui-enumeration='exclusive' user:ui-pattern-include-all-when-empty='true' user:ui-pattern_text='Null' user:ui-pattern_type='starts-with'>
+              <groupfilter function='level-members' level='[none:GC Column:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762565660673:nk]</column>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762566258690:nk]</column>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:GC Column:nk]</column>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[Action (Subject,Student)]</column>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[Action (Subject,Cohort,Student)]</column>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[Action (Subject,Cohort,GC Column,Student)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='header'>
+            <format attr='height' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:GC Column:nk]' value='92' />
+            <format attr='width' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Student:nk]' value='108' />
+            <format attr='width' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Cohort:nk]' value='52' />
+            <format attr='width' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Subject Id:nk]' value='156' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Student:nk] / ([federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Subject Id:nk] / [federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Cohort:nk]))</rows>
+        <cols>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:GC Column:nk]</cols>
+      </table>
+      <simple-id uuid='{8903B0A5-D856-4371-BCA2-CB2CB4EE732A}' />
+    </worksheet>
+    <worksheet name='Students and Subjects'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run bold='true'>DoGS Student Perfomance Report</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Students+ (DoGS)' name='federated.0w1fcuu1nr24zd1em3j9p1bvesnn' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0w1fcuu1nr24zd1em3j9p1bvesnn'>
+            <column caption='Subject' datatype='string' name='[Calculation_852587762564993024]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='Mid([Subject Id], 3, 6) + CHAR(10) + &#13;&#10;  &quot; (&quot; + [Subject Name] + &quot;)&quot;' />
+            </column>
+            <column caption='Exclude GC Columns' datatype='boolean' name='[Calculation_852587762565660673]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='If ( [GC Column] = &quot;Learning Journal Tasks Weeks 1 - 4&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Tasks Weeks 5 - 10&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Tasks Weeks 5-10&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Learning Journal Report and Final Submission&quot; and Mid([Subject Id], 3, 6) = &quot;EED173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Main Claim&quot; and Mid([Subject Id], 3, 6) = &quot;COM173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Essay and Argument Plans&quot; and Mid([Subject Id], 3, 6) = &quot;COM173&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Oral Presentation&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Essay/Report&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( [GC Column] = &quot;Writing Portfolio&quot; and Mid([Subject Id], 3, 6) = &quot;ESL172&quot; ) or&#13;&#10;   ( FIND([GC Column], &quot;Score&quot;) = 0 and Mid([Subject Id], 3, 6) = &quot;STA172&quot; ) or&#13;&#10;    [GC Column] = &quot;Administrative Override&quot; then&#13;&#10;    FALSE&#13;&#10;Else&#13;&#10;    TRUE&#13;&#10;End' />
+            </column>
+            <column caption='Year' datatype='string' name='[Calculation_852587762566258690]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='Left([Session], 4)' />
+            </column>
+            <column datatype='string' name='[Cohort]' role='dimension' type='nominal' />
+            <column datatype='string' name='[GC Column]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Score]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Session]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Student]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Subject Id]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Subject Name]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_852587762564993024]' derivation='None' name='[none:Calculation_852587762564993024:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_852587762565660673]' derivation='None' name='[none:Calculation_852587762565660673:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_852587762566258690]' derivation='None' name='[none:Calculation_852587762566258690:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Cohort]' derivation='None' name='[none:Cohort:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Session]' derivation='None' name='[none:Session:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Student]' derivation='None' name='[none:Student:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Score]' derivation='Sum' name='[sum:Score:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <slices>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762565660673:nk]</column>
+            <column>[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762566258690:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762564993024:nk]' value='213' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='height' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762564993024:nk]' value='73' />
+            <format attr='width' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Cohort:nk]' value='48' />
+            <format attr='width' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Student:nk]' value='152' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='size-bar' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' field-type='quantitative' max-size='1' min-size='0.005' type='centersize' />
+            <encoding attr='color' field='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' reverse='true' type='custom-interpolated'>
+              <color-palette custom='true' name='' type='ordered-diverging'>
+                <color>#9e3d22</color>
+                <color>#ad4523</color>
+                <color>#bc4d23</color>
+                <color>#cb5522</color>
+                <color>#d95e21</color>
+                <color>#e76820</color>
+                <color>#ee7725</color>
+                <color>#f58a30</color>
+                <color>#fa9e3f</color>
+                <color>#fdb053</color>
+                <color>#ffc171</color>
+                <color>#d9d5c9</color>
+                <color>#dcdcdc</color>
+                <color>#dfdfdf</color>
+                <color>#e3e3e3</color>
+                <color>#e6e6e6</color>
+                <color>#eaeaea</color>
+                <color>#ededed</color>
+                <color>#f1f1f1</color>
+                <color>#f4f4f4</color>
+                <color>#f8f8f8</color>
+                <color>#fbfbfb</color>
+                <color>#ffffff</color>
+              </color-palette>
+            </encoding>
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[sum:Score:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Cohort:nk] / [federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Student:nk])</rows>
+        <cols>([federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Session:nk] / [federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762564993024:nk])</cols>
+      </table>
+      <simple-id uuid='{2CD349BA-3027-4666-A941-D1E0D392A414}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard name='DoGS Student Perfomance Report'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <datasources>
+        <datasource caption='Students+ (DoGS)' name='federated.0w1fcuu1nr24zd1em3j9p1bvesnn' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0w1fcuu1nr24zd1em3j9p1bvesnn'>
+        <column caption='Year' datatype='string' name='[Calculation_852587762566258690]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='Left([Session], 4)' />
+        </column>
+        <column-instance column='[Calculation_852587762566258690]' derivation='None' name='[none:Calculation_852587762566258690:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='5' param='horz' type='layout-flow' w='98400' x='800' y='1000'>
+            <zone h='98000' id='3' type='layout-basic' w='98400' x='800' y='1000'>
+              <zone h='81463' id='1' name='Students and Subjects' w='98400' x='800' y='17537'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                  <format attr='margin-bottom' value='0' />
+                  <format attr='margin-left' value='0' />
+                </zone-style>
+              </zone>
+              <zone h='16537' id='6' mode='dropdown' name='Students and Subjects' param='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762566258690:nk]' type='filter' w='14721' x='84479' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                  <format attr='margin-top' value='0' />
+                  <format attr='background-color' value='#ffffff' />
+                </zone-style>
+              </zone>
+              <zone forceUpdate='true' h='16537' id='7' type='text' w='80518' x='800' y='1000'>
+                <formatted-text>
+                  <run fontalignment='1' fontsize='10'>The table below shows the current marks of students in DoGS&apos; subjects.</run>
+                  <run fontalignment='1'>Æ&#10;</run>
+                  <run fontalignment='1' fontsize='10'>Left-click on a mark and select the text </run>
+                  <run fontalignment='1' fontsize='10' italic='true'>Show Student Marks </run>
+                  <run fontalignment='1' fontsize='10'>to see the individual assessments that contribute to that mark.</run>
+                  <run fontalignment='1'>Æ&#10;&#10;</run>
+                  <run fontalignment='1' fontsize='10'>To copy to Excel, left-click in the table, select </run>
+                  <run fontalignment='1' fontsize='10' italic='true'>Download</run>
+                  <run fontalignment='1' fontsize='10'>Æ </run>
+                  <run fontalignment='1' fontsize='10' italic='true'>Æ </run>
+                  <run fontalignment='1' fontsize='10'>at top-right and select </run>
+                  <run fontalignment='1' fontsize='10' italic='true'>Crosstab</run>
+                  <run fontalignment='1' fontsize='10'>.</run>
+                  <run fontalignment='1'>Æ&#10;&#10;</run>
+                  <run fontalignment='1' fontsize='10'>Last updated: August 10, 2018 --  data as at August 8</run>
+                </formatted-text>
+                <zone-style>
+                  <format attr='border-color' value='#aca899' />
+                  <format attr='border-style' value='solid' />
+                  <format attr='border-width' value='1' />
+                  <format attr='margin' value='4' />
+                  <format attr='margin-top' value='0' />
+                  <format attr='margin-left' value='0' />
+                </zone-style>
+              </zone>
+              <zone h='16537' id='8' type='empty' w='3161' x='81318' y='1000'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                  <format attr='margin-top' value='0' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='4' />
+            <format attr='margin-top' value='8' />
+            <format attr='margin-right' value='8' />
+            <format attr='margin-bottom' value='8' />
+            <format attr='margin-left' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <simple-id uuid='{18C2E091-E0B0-4FDC-8926-F02A5BAABB23}' />
+    </dashboard>
+    <dashboard name='Marks by Cohort'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <datasources>
+        <datasource caption='Students+ (DoGS)' name='federated.0w1fcuu1nr24zd1em3j9p1bvesnn' />
+      </datasources>
+      <datasource-dependencies datasource='federated.0w1fcuu1nr24zd1em3j9p1bvesnn'>
+        <column caption='Subject' datatype='string' name='[Calculation_852587762564993024]' role='dimension' type='nominal'>
+          <calculation class='tableau' formula='Mid([Subject Id], 3, 6) + CHAR(10) + &#13;&#10;  &quot; (&quot; + [Subject Name] + &quot;)&quot;' />
+        </column>
+        <column datatype='string' name='[Session]' role='dimension' type='nominal' />
+        <column-instance column='[Calculation_852587762564993024]' derivation='None' name='[none:Calculation_852587762564993024:nk]' pivot='key' type='nominal' />
+        <column-instance column='[Session]' derivation='None' name='[none:Session:nk]' pivot='key' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='79870' id='5' param='horz' type='layout-flow' w='98400' x='800' y='19130'>
+            <zone h='79870' id='3' type='layout-basic' w='98400' x='800' y='19130'>
+              <zone h='79870' id='1' name='Marks for a Subject' w='98400' x='800' y='19130'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                  <format attr='margin-bottom' value='0' />
+                  <format attr='margin-left' value='0' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone h='18130' id='7' param='horz' type='layout-flow' w='49200' x='800' y='1000'>
+            <zone fixed-size='160' h='18130' id='6' is-fixed='true' mode='dropdown' name='Marks for a Subject' param='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Session:nk]' type='filter' w='16400' x='800' y='1000'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+                <format attr='margin-top' value='0' />
+                <format attr='margin-left' value='0' />
+                <format attr='background-color' value='#ffffff' />
+              </zone-style>
+            </zone>
+            <zone fixed-size='288' h='18130' id='8' is-fixed='true' mode='radiolist' name='Marks for a Subject' param='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Calculation_852587762564993024:nk]' type='filter' values='relevant' w='29600' x='17200' y='1000'>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='4' />
+                <format attr='margin-top' value='0' />
+                <format attr='background-color' value='#ffffff' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone forceUpdate='true' h='18130' id='9' type='text' w='49200' x='50000' y='1000'>
+            <formatted-text>
+              <run fontsize='10'>Each dot represents a student.  The graph shows the spread of marks by cohort.  The two shaded grey areas show 25% of students each.  The middle of the two grey areas is the median mark.  The two lines at the top and bottom show the marks where most of the students lie within.</run>
+            </formatted-text>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+              <format attr='margin-top' value='0' />
+              <format attr='margin-right' value='0' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='4' />
+            <format attr='margin-top' value='8' />
+            <format attr='margin-right' value='8' />
+            <format attr='margin-bottom' value='8' />
+            <format attr='margin-left' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <simple-id uuid='{856E8AC7-2859-430A-826B-2C50F8A906AA}' />
+    </dashboard>
+    <dashboard name='Marks for a Student'>
+      <style />
+      <size maxheight='800' maxwidth='1000' minheight='800' minwidth='1000' />
+      <zones>
+        <zone h='100000' id='2' type='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='1' name='Student Detail' show-title='false' w='98400' x='800' y='1000'>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+              <format attr='margin-top' value='0' />
+              <format attr='margin-right' value='0' />
+              <format attr='margin-bottom' value='0' />
+              <format attr='margin-left' value='0' />
+            </zone-style>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='4' />
+            <format attr='margin-top' value='8' />
+            <format attr='margin-right' value='8' />
+            <format attr='margin-bottom' value='8' />
+            <format attr='margin-left' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <simple-id uuid='{6B2D095C-A5B0-48E9-BBFB-37A24F4A253D}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='Students and Subjects'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{B0D064B5-3170-4725-9921-D132A883982D}' />
+    </window>
+    <window class='worksheet' name='Marks for a Subject'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.0w1fcuu1nr24zd1em3j9p1bvesnn].[none:Cohort:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{63BBA758-6697-45B4-9002-5B22DDE69C91}' />
+    </window>
+    <window class='worksheet' name='Student Detail'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{259330EA-DC41-4D93-BAF6-F302F59AA0A5}' />
+    </window>
+    <window class='dashboard' name='DoGS Student Perfomance Report'>
+      <viewpoints>
+        <viewpoint name='Students and Subjects'>
+          <zoom type='fit-width' />
+        </viewpoint>
+      </viewpoints>
+      <active id='1' />
+      <simple-id uuid='{BA644CAE-8B83-4038-B292-1C1AACCA569F}' />
+    </window>
+    <window class='dashboard' name='Marks by Cohort'>
+      <viewpoints>
+        <viewpoint name='Marks for a Subject'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='8' />
+      <simple-id uuid='{3513EBC5-9FD6-4763-9C96-20D04E35E031}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Marks for a Student'>
+      <viewpoints>
+        <viewpoint name='Student Detail'>
+          <zoom type='fit-width' />
+        </viewpoint>
+      </viewpoints>
+      <active id='1' />
+      <simple-id uuid='{E7396201-500F-48DD-A7B9-5E740F418F73}' />
+    </window>
+  </windows>
+</workbook>
