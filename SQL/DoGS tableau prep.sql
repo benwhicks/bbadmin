@@ -9,6 +9,7 @@ from course_main cm inner join course_users cu on cm.pk1 = cu.crsmain_pk1
   inner join term t on t.pk1 = ct.term_pk1
 inner join users u on u.pk1 = cu.users_pk1
 where t.name like '2019%' and
+      cu.role like 'S' and cu.row_status = 0 and
       (cm.course_id like 'S-COM173%_W_%' or
        cm.course_id like 'S-EED173%' or
        cm.course_id like 'S-ESL172%' or
@@ -32,6 +33,7 @@ inner join users u on u.pk1 = cu.users_pk1
 inner join gradebook_main gm on cm.pk1 = gm.crsmain_pk1
 inner join gradebook_grade gg on gm.pk1 = gg.gradebook_main_pk1 and gg.course_users_pk1 = cu.pk1
 where t.name like '2019%' and
+      cu.role like 'S' and cu.row_status = 0 and
       (cm.course_id like 'S-COM173%_W_%' or
        cm.course_id like 'S-EED173%' or
        cm.course_id like 'S-ESL172%' or
