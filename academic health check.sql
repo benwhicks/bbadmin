@@ -5,7 +5,7 @@ SELECT
        subject_name, subject_code,
        lastaccess_course,
        date_part('day',  date_trunc('day', now() -max(lastaccess_course) ))  as days_since_last_access_course,
-       max(score / possible) as max_grade_so_far,
+       max(score / greatest(possible, 1)) as max_grade_so_far, --fix to avoid infinite grades for those with 0 possible. Could be more elegant!
        lastaccess_overall,
        date_part('day', date_trunc('day', now() - max(lastaccess_overall) ))  as days_since_last_access_overall,
        childcourse

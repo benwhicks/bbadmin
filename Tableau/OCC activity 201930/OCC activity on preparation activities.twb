@@ -1,0 +1,1041 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20191.19.0417.1429                               -->
+<workbook original-version='18.1' source-build='2019.1.3 (20191.19.0417.1429)' source-platform='win' version='18.1' xml:base='https://bi.csu.edu.au' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <repository-location id='OCCactivityonpreparationactivities' path='/t/CSUAnalytics-Prod/workbooks' revision='1.1' site='CSUAnalytics-Prod' />
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='OCCsummary' inline='true' name='federated.1tsecy91lpbb111593pv41c51sbk' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='OCCsummary' name='textscan.0ldt7jc1qtpru11g5pr9w14zkudw'>
+            <connection class='textscan' directory='D:/Users/bhicks/Documents/bbadmin/Tableau/OCC activity 201930' filename='OCCsummary.csv' password='' server='' workgroup-auth-mode='as-is' />
+          </named-connection>
+          <named-connection caption='timed_data' name='textscan.0fmovxx0gptwj01fbbne50sasca4'>
+            <connection class='textscan' directory='D:/Users/bhicks/Documents/bbadmin/Tableau/OCC activity 201930' filename='timed_data.csv' password='' server='' workgroup-auth-mode='as-is' />
+          </named-connection>
+        </named-connections>
+        <relation join='inner' type='join'>
+          <clause type='join'>
+            <expression op='='>
+              <expression op='[OCCsummary.csv].[content_pk1]' />
+              <expression op='[timed_data.csv].[content_pk1]' />
+            </expression>
+          </clause>
+          <relation connection='textscan.0ldt7jc1qtpru11g5pr9w14zkudw' name='OCCsummary.csv' table='[OCCsummary#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_AU' separator=','>
+              <column datatype='integer' name='s_id' ordinal='0' />
+              <column datatype='datetime' name='timestamp' ordinal='1' />
+              <column datatype='string' name='role' ordinal='2' />
+              <column datatype='integer' name='session_id' ordinal='3' />
+              <column datatype='integer' name='content_pk1' ordinal='4' />
+              <column datatype='string' name='title' ordinal='5' />
+              <column datatype='string' name='folder_ind' ordinal='6' />
+              <column datatype='boolean' name='prep' ordinal='7' />
+            </columns>
+          </relation>
+          <relation connection='textscan.0fmovxx0gptwj01fbbne50sasca4' name='timed_data.csv' table='[timed_data#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_AU' separator=','>
+              <column datatype='integer' name='s_id' ordinal='0' />
+              <column datatype='integer' name='content_pk1' ordinal='1' />
+              <column datatype='real' name='duration' ordinal='2' />
+              <column datatype='datetime' name='timestamp' ordinal='3' />
+              <column datatype='string' name='title' ordinal='4' />
+              <column datatype='string' name='folder_ind' ordinal='5' />
+              <column datatype='boolean' name='prep' ordinal='6' />
+            </columns>
+          </relation>
+        </relation>
+        <cols>
+          <map key='[content_pk1 (timed_data.csv)]' value='[timed_data.csv].[content_pk1]' />
+          <map key='[content_pk1]' value='[OCCsummary.csv].[content_pk1]' />
+          <map key='[duration]' value='[timed_data.csv].[duration]' />
+          <map key='[folder_ind (timed_data.csv)]' value='[timed_data.csv].[folder_ind]' />
+          <map key='[folder_ind]' value='[OCCsummary.csv].[folder_ind]' />
+          <map key='[prep (timed_data.csv)]' value='[timed_data.csv].[prep]' />
+          <map key='[prep]' value='[OCCsummary.csv].[prep]' />
+          <map key='[role]' value='[OCCsummary.csv].[role]' />
+          <map key='[s_id (timed_data.csv)]' value='[timed_data.csv].[s_id]' />
+          <map key='[s_id]' value='[OCCsummary.csv].[s_id]' />
+          <map key='[session_id]' value='[OCCsummary.csv].[session_id]' />
+          <map key='[timestamp (timed_data.csv)]' value='[timed_data.csv].[timestamp]' />
+          <map key='[timestamp]' value='[OCCsummary.csv].[timestamp]' />
+          <map key='[title (timed_data.csv)]' value='[timed_data.csv].[title]' />
+          <map key='[title]' value='[OCCsummary.csv].[title]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[OCCsummary.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='debit-close-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='debit-open-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_AU&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>s_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[s_id]</local-name>
+            <parent-name>[OCCsummary.csv]</parent-name>
+            <remote-alias>s_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>timestamp</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[timestamp]</local-name>
+            <parent-name>[OCCsummary.csv]</parent-name>
+            <remote-alias>timestamp</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>role</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[role]</local-name>
+            <parent-name>[OCCsummary.csv]</parent-name>
+            <remote-alias>role</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>session_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[session_id]</local-name>
+            <parent-name>[OCCsummary.csv]</parent-name>
+            <remote-alias>session_id</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>content_pk1</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[content_pk1]</local-name>
+            <parent-name>[OCCsummary.csv]</parent-name>
+            <remote-alias>content_pk1</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>title</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[title]</local-name>
+            <parent-name>[OCCsummary.csv]</parent-name>
+            <remote-alias>title</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>folder_ind</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[folder_ind]</local-name>
+            <parent-name>[OCCsummary.csv]</parent-name>
+            <remote-alias>folder_ind</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>prep</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[prep]</local-name>
+            <parent-name>[OCCsummary.csv]</parent-name>
+            <remote-alias>prep</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[timed_data.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='debit-close-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='debit-open-char'>&quot;&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_AU&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>s_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[s_id (timed_data.csv)]</local-name>
+            <parent-name>[timed_data.csv]</parent-name>
+            <remote-alias>s_id</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>content_pk1</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[content_pk1 (timed_data.csv)]</local-name>
+            <parent-name>[timed_data.csv]</parent-name>
+            <remote-alias>content_pk1</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>duration</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[duration]</local-name>
+            <parent-name>[timed_data.csv]</parent-name>
+            <remote-alias>duration</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>timestamp</remote-name>
+            <remote-type>135</remote-type>
+            <local-name>[timestamp (timed_data.csv)]</local-name>
+            <parent-name>[timed_data.csv]</parent-name>
+            <remote-alias>timestamp</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>title</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[title (timed_data.csv)]</local-name>
+            <parent-name>[timed_data.csv]</parent-name>
+            <remote-alias>title</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>folder_ind</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[folder_ind (timed_data.csv)]</local-name>
+            <parent-name>[timed_data.csv]</parent-name>
+            <remote-alias>folder_ind</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>prep</remote-name>
+            <remote-type>11</remote-type>
+            <local-name>[prep (timed_data.csv)]</local-name>
+            <parent-name>[timed_data.csv]</parent-name>
+            <remote-alias>prep</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>boolean</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Content Pk1 (Timed Data.Csv)' datatype='integer' name='[content_pk1 (timed_data.csv)]' role='measure' type='quantitative' />
+      <column caption='Content Pk1' datatype='integer' name='[content_pk1]' role='measure' type='quantitative' />
+      <column caption='Duration' datatype='real' name='[duration]' role='measure' type='quantitative' />
+      <column caption='Folder Ind (Timed Data.Csv)' datatype='string' name='[folder_ind (timed_data.csv)]' role='dimension' type='nominal' />
+      <column caption='Folder Ind' datatype='string' name='[folder_ind]' role='dimension' type='nominal' />
+      <column caption='Prep (Timed Data.Csv)' datatype='boolean' name='[prep (timed_data.csv)]' role='dimension' type='nominal' />
+      <column caption='Prep' datatype='boolean' name='[prep]' role='dimension' type='nominal' />
+      <column caption='Role' datatype='string' name='[role]' role='dimension' type='nominal' />
+      <column caption='S Id (Timed Data.Csv)' datatype='integer' name='[s_id (timed_data.csv)]' role='dimension' type='ordinal' />
+      <column caption='S Id' datatype='integer' name='[s_id]' role='dimension' type='ordinal' />
+      <column caption='Session Id' datatype='integer' name='[session_id]' role='dimension' type='ordinal' />
+      <column caption='Timestamp (Timed Data.Csv)' datatype='datetime' name='[timestamp (timed_data.csv)]' role='dimension' type='ordinal' />
+      <column caption='Timestamp' datatype='datetime' name='[timestamp]' role='dimension' type='ordinal' />
+      <column caption='Title (Timed Data.Csv)' datatype='string' name='[title (timed_data.csv)]' role='dimension' type='nominal' />
+      <column caption='Title' datatype='string' name='[title]' role='dimension' type='nominal' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='D:/Users/bhicks/Documents/My Tableau Repository/Datasources/OCCsummary.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='05/27/2019 06:31:25 AM' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <cols>
+            <map key='[Number of Records]' value='[Extract].[Number of Records]' />
+            <map key='[content_pk1 (timed_data.csv)]' value='[Extract].[content_pk1]' />
+            <map key='[content_pk1]' value='[Extract].[content_pk11]' />
+            <map key='[duration]' value='[Extract].[duration]' />
+            <map key='[folder_ind (timed_data.csv)]' value='[Extract].[folder_ind]' />
+            <map key='[folder_ind]' value='[Extract].[folder_ind1]' />
+            <map key='[prep (timed_data.csv)]' value='[Extract].[prep]' />
+            <map key='[prep]' value='[Extract].[prep1]' />
+            <map key='[role]' value='[Extract].[role]' />
+            <map key='[s_id (timed_data.csv)]' value='[Extract].[s_id]' />
+            <map key='[s_id]' value='[Extract].[s_id1]' />
+            <map key='[session_id]' value='[Extract].[session_id]' />
+            <map key='[timestamp (timed_data.csv)]' value='[Extract].[timestamp]' />
+            <map key='[timestamp]' value='[Extract].[timestamp1]' />
+            <map key='[title (timed_data.csv)]' value='[Extract].[title]' />
+            <map key='[title]' value='[Extract].[title1]' />
+          </cols>
+          <calculations>
+            <calculation column='[Number of Records]' formula='1' />
+          </calculations>
+          <refresh>
+            <refresh-event add-from-file-path='OCCsummary' increment-value='%null%' refresh-type='create' rows-inserted='61646203' timestamp-start='2019-05-27 06:31:25.530' />
+          </refresh>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>s_id1</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[s_id]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>s_id1</remote-alias>
+              <ordinal>0</ordinal>
+              <family>OCCsummary.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>76</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>timestamp1</remote-name>
+              <remote-type>135</remote-type>
+              <local-name>[timestamp]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>timestamp1</remote-alias>
+              <ordinal>1</ordinal>
+              <family>OCCsummary.csv</family>
+              <local-type>datetime</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>64439</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>role</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[role]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>role</remote-alias>
+              <ordinal>2</ordinal>
+              <family>OCCsummary.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>1</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>session_id</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[session_id]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>session_id</remote-alias>
+              <ordinal>3</ordinal>
+              <family>OCCsummary.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>2335</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>content_pk11</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[content_pk1]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>content_pk11</remote-alias>
+              <ordinal>4</ordinal>
+              <family>OCCsummary.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>260</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>title1</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[title]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>title1</remote-alias>
+              <ordinal>5</ordinal>
+              <family>OCCsummary.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>116</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>folder_ind1</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[folder_ind]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>folder_ind1</remote-alias>
+              <ordinal>6</ordinal>
+              <family>OCCsummary.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>prep1</remote-name>
+              <remote-type>11</remote-type>
+              <local-name>[prep]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>prep1</remote-alias>
+              <ordinal>7</ordinal>
+              <family>OCCsummary.csv</family>
+              <local-type>boolean</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>s_id</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[s_id (timed_data.csv)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>s_id</remote-alias>
+              <ordinal>8</ordinal>
+              <family>timed_data.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>76</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>content_pk1</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[content_pk1 (timed_data.csv)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>content_pk1</remote-alias>
+              <ordinal>9</ordinal>
+              <family>timed_data.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>260</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>duration</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[duration]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>duration</remote-alias>
+              <ordinal>10</ordinal>
+              <family>timed_data.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>89686</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>timestamp</remote-name>
+              <remote-type>135</remote-type>
+              <local-name>[timestamp (timed_data.csv)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>timestamp</remote-alias>
+              <ordinal>11</ordinal>
+              <family>timed_data.csv</family>
+              <local-type>datetime</local-type>
+              <aggregation>Year</aggregation>
+              <approx-count>65842</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>title</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[title (timed_data.csv)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>title</remote-alias>
+              <ordinal>12</ordinal>
+              <family>timed_data.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>116</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>folder_ind</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[folder_ind (timed_data.csv)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>folder_ind</remote-alias>
+              <ordinal>13</ordinal>
+              <family>timed_data.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RGB' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>prep</remote-name>
+              <remote-type>11</remote-type>
+              <local-name>[prep (timed_data.csv)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>prep</remote-alias>
+              <ordinal>14</ordinal>
+              <family>timed_data.csv</family>
+              <local-type>boolean</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Number of Records</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Number of Records]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Number of Records</remote-alias>
+              <ordinal>15</ordinal>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>7</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+        <aggregation column='[Number of Records]' derivation='Sum' />
+        <aggregation column='[content_pk1 (timed_data.csv)]' derivation='Sum' />
+        <aggregation column='[content_pk1]' derivation='Sum' />
+        <aggregation column='[duration]' derivation='Sum' />
+        <aggregation column='[folder_ind (timed_data.csv)]' derivation='None' />
+        <aggregation column='[folder_ind]' derivation='None' />
+        <aggregation column='[prep (timed_data.csv)]' derivation='None' />
+        <aggregation column='[prep]' derivation='None' />
+        <aggregation column='[role]' derivation='None' />
+        <aggregation column='[s_id (timed_data.csv)]' derivation='None' />
+        <aggregation column='[s_id]' derivation='None' />
+        <aggregation column='[session_id]' derivation='None' />
+        <aggregation column='[timestamp (timed_data.csv)]' derivation='None' />
+        <aggregation column='[timestamp]' derivation='None' />
+        <aggregation column='[title (timed_data.csv)]' derivation='None' />
+        <aggregation column='[title]' derivation='None' />
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.591141' measure-ordering='alphabetic' measure-percentage='0.408859' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Australia&quot;' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Time'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Time spent</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='OCCsummary' name='federated.1tsecy91lpbb111593pv41c51sbk' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tsecy91lpbb111593pv41c51sbk'>
+            <column caption='Duration' datatype='real' name='[duration]' role='measure' type='quantitative' />
+            <column caption='Folder Ind (Timed Data.Csv)' datatype='string' name='[folder_ind (timed_data.csv)]' role='dimension' type='nominal' />
+            <column-instance column='[folder_ind (timed_data.csv)]' derivation='None' name='[none:folder_ind (timed_data.csv):nk]' pivot='key' type='nominal' />
+            <column-instance column='[prep (timed_data.csv)]' derivation='None' name='[none:prep (timed_data.csv):nk]' pivot='key' type='nominal' />
+            <column-instance column='[title (timed_data.csv)]' derivation='None' name='[none:title (timed_data.csv):nk]' pivot='key' type='nominal' />
+            <column caption='Prep (Timed Data.Csv)' datatype='boolean' name='[prep (timed_data.csv)]' role='dimension' type='nominal' />
+            <column-instance column='[duration]' derivation='Sum' name='[sum:duration:qk]' pivot='key' type='quantitative' />
+            <column caption='Timestamp (Timed Data.Csv)' datatype='datetime' name='[timestamp (timed_data.csv)]' role='dimension' type='ordinal' />
+            <column caption='Title (Timed Data.Csv)' datatype='string' name='[title (timed_data.csv)]' role='dimension' type='nominal' />
+            <column-instance column='[timestamp (timed_data.csv)]' derivation='Week' name='[wk:timestamp (timed_data.csv):ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tsecy91lpbb111593pv41c51sbk].[none:prep (timed_data.csv):nk]'>
+            <groupfilter function='member' level='[none:prep (timed_data.csv):nk]' member='true' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1tsecy91lpbb111593pv41c51sbk].[none:prep (timed_data.csv):nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.1tsecy91lpbb111593pv41c51sbk].[sum:duration:qk]' palette='orange_blue_diverging_10_0' reverse='true' type='interpolated' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1tsecy91lpbb111593pv41c51sbk].[sum:duration:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1tsecy91lpbb111593pv41c51sbk].[none:title (timed_data.csv):nk] / [federated.1tsecy91lpbb111593pv41c51sbk].[none:folder_ind (timed_data.csv):nk])</rows>
+        <cols>[federated.1tsecy91lpbb111593pv41c51sbk].[wk:timestamp (timed_data.csv):ok]</cols>
+      </table>
+      <simple-id uuid='{B693A8B4-95C3-4319-90AC-028C5464FD67}' />
+    </worksheet>
+    <worksheet name='Views'>
+      <layout-options>
+        <title>
+          <formatted-text>
+            <run>Views of Lecture Preparation Items</run>
+          </formatted-text>
+        </title>
+      </layout-options>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='OCCsummary' name='federated.1tsecy91lpbb111593pv41c51sbk' />
+          </datasources>
+          <datasource-dependencies datasource='federated.1tsecy91lpbb111593pv41c51sbk'>
+            <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+              <calculation class='tableau' formula='1' />
+            </column>
+            <column caption='Folder Ind' datatype='string' name='[folder_ind]' role='dimension' type='nominal' />
+            <column-instance column='[folder_ind]' derivation='None' name='[none:folder_ind:nk]' pivot='key' type='nominal' />
+            <column-instance column='[prep]' derivation='None' name='[none:prep:nk]' pivot='key' type='nominal' />
+            <column-instance column='[title]' derivation='None' name='[none:title:nk]' pivot='key' type='nominal' />
+            <column caption='Prep' datatype='boolean' name='[prep]' role='dimension' type='nominal' />
+            <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+            <column caption='Timestamp' datatype='datetime' name='[timestamp]' role='dimension' type='ordinal' />
+            <column caption='Title' datatype='string' name='[title]' role='dimension' type='nominal' />
+            <column-instance column='[timestamp]' derivation='Week' name='[wk:timestamp:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.1tsecy91lpbb111593pv41c51sbk].[none:prep:nk]'>
+            <groupfilter function='member' level='[none:prep:nk]' member='true' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.1tsecy91lpbb111593pv41c51sbk].[none:prep:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.1tsecy91lpbb111593pv41c51sbk].[none:title:nk]' value='356' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.1tsecy91lpbb111593pv41c51sbk].[sum:Number of Records:qk]' palette='orange_blue_diverging_10_0' reverse='true' type='interpolated' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.1tsecy91lpbb111593pv41c51sbk].[sum:Number of Records:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.1tsecy91lpbb111593pv41c51sbk].[none:title:nk] / [federated.1tsecy91lpbb111593pv41c51sbk].[none:folder_ind:nk])</rows>
+        <cols>[federated.1tsecy91lpbb111593pv41c51sbk].[wk:timestamp:ok]</cols>
+      </table>
+      <simple-id uuid='{6FCC38BB-3ECC-468C-B949-E1922C4F4518}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' name='Views'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.1tsecy91lpbb111593pv41c51sbk].[sum:Number of Records:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1tsecy91lpbb111593pv41c51sbk].[none:folder_ind:nk]</field>
+            <field>[federated.1tsecy91lpbb111593pv41c51sbk].[none:prep:nk]</field>
+            <field>[federated.1tsecy91lpbb111593pv41c51sbk].[none:title:nk]</field>
+            <field>[federated.1tsecy91lpbb111593pv41c51sbk].[yr:timestamp:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{18F2C4E4-67F4-46F0-A5DB-3B35937000F6}' />
+    </window>
+    <window class='worksheet' maximized='true' name='Time'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.1tsecy91lpbb111593pv41c51sbk].[sum:duration:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.1tsecy91lpbb111593pv41c51sbk].[none:folder_ind (timed_data.csv):nk]</field>
+            <field>[federated.1tsecy91lpbb111593pv41c51sbk].[none:prep (timed_data.csv):nk]</field>
+            <field>[federated.1tsecy91lpbb111593pv41c51sbk].[none:title (timed_data.csv):nk]</field>
+            <field>[federated.1tsecy91lpbb111593pv41c51sbk].[sum:duration:qk]</field>
+            <field>[federated.1tsecy91lpbb111593pv41c51sbk].[yr:timestamp (timed_data.csv):ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{08F37A5F-6A27-45DD-8FD8-6FBF4D81991F}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='164' name='Time' width='192'>
+      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
+      IPx/iurWXV8AFggAAAAASUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='164' name='Views' width='192'>
+      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
+      AABJRU5ErkJggg==
+    </thumbnail>
+  </thumbnails>
+</workbook>
