@@ -5,8 +5,8 @@
 library(tidyverse)
 library(lubridate)
 library(lakit)
-aa <- read_csv(file.path('~', 'Data', 'ad hoc', 'aa S-OCC104_201930_PT_I 20190415.csv'))
-cc_full <- read_csv(file.path('~', 'Data', 'ad hoc', 'cc S-OCC104_201930_PT_I 20190415.csv'))
+aa <- read_csv(file.path('~', 'Data', 'ad hoc', 'aa S-OCC104_201930_PT_I 20190603.csv'))
+cc_full <- read_csv(file.path('~', 'Data', 'ad hoc', 'cc S-OCC104_201930_PT_I 20190603.csv'))
 
 cc <- cc_full %>% select(pk1, parent_pk1, 
                          position, title, description, folder_ind)

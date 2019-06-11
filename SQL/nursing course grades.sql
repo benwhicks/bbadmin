@@ -1,6 +1,7 @@
 /* For collecting historical data on Bachelor of Nursing course
 */
 select concat(firstname, ' ', lastname) as student_name, lastname, firstname, id,
+       user_id,
        term_name, subject_name, subject_code, subject_main, subject_name_child,
        position, title, weight, description,
        score, possible,
@@ -35,6 +36,6 @@ where (subject_code like 'S-NRS%' or
        subject_code like 'S-BMS291%' or
        subject_code like 'S-BMS292%')
   and id is not null
-  and term_name like '2019%'
+  and (term_name like '201830%' or term_name like '201790%') -- need to fetch much more.
 and row_status = 0 -- means students are definitely enrolled in a subject. 2 means they were previously enrolled.
 order by lastname, firstname
