@@ -27,11 +27,11 @@ where /*(cm.course_id like 'S-PSY203_201760%'
 /* (cm.course_id like 'S-PSY208_201760%'
            or
        cm.course_id like 'S-PSY458_201760%') */
- cm.course_id like 'S-MGT230_201960_W_D'
+ cm.course_id like 'S-%100_201860%'
 
 
-select distinct *
+/*select distinct *
 from forum_main fm
     inner join conference_main cfm on fm.confmain_pk1 = cfm.pk1
     inner join course_main cm on cfm.crsmain_pk1 = cm.pk1
-where cm.course_id like 'S-MGT230_201960_W_D'
+where cm.course_id like 'S-MGT230_201960_W_D' */
