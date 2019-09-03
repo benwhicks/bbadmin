@@ -23,12 +23,8 @@ from   term inner join course_term on term.pk1 = course_term.term_pk1
 inner join gradebook_type gt on course_main.pk1 = gt.crsmain_pk1 and gt.pk1 = gradebook_main.gradebook_type_pk1
 where  --term.name in ('201760')
        course_main.available_ind =  'Y'
-and    (course_main.course_id like 'S-NRS%' or
-       course_main.course_id like 'S-BMS191%' or
-       course_main.course_id like 'S-BMS192%' or
-       course_main.course_id like 'S-BMS291%' or
-       course_main.course_id like 'S-BMS292%')
+and    (course_main.course_id like 'S-BMS171_201930_A_I%')
 and    course_users.available_ind = 'Y'
-and    course_users.row_status = 0
+--and    course_users.row_status = 0
 and    course_users.role = 'S'
 order by 1, 4, 5, 2, 3, 6
