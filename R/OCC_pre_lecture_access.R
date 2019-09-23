@@ -32,3 +32,6 @@ aa_timer <- aa_timer %>%
   select(s_id, content_pk1, duration, timestamp) %>% 
   inner_join(cc %>% 
                select(content_pk1 = pk1, title, folder_ind, prep))
+
+write_csv(aa_sum, path = file.path('~', 'bbadmin', 'Tableau', 'OCC activity 201930', 'OCCsummary.csv'))
+write_csv(aa_timer, path = file.path('~', 'bbadmin', 'Tableau', 'OCC activity 201930', 'timed_data.csv'))

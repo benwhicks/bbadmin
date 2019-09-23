@@ -1,7 +1,7 @@
 /* The following extracts relevant static course information */
 
 select cm.course_name, cm.course_id,
-       --cc.pk1, cc.parent_pk1,
+       cc.pk1, cc.parent_pk1,
        cc.title, cc.description,cc.cnthndlr_handle,
        cc.content_type, -- URL, LINK (course link), REG (regular), FILE (single file)
        cc.description, cc.dtmodified, cc.start_date, cc.position,
@@ -17,7 +17,7 @@ select cm.course_name, cm.course_id,
        --cc.extended_data
 from course_contents cc
     inner join course_main cm on cc.crsmain_pk1 = cm.pk1
-where cm.course_id like 'S-LAW504_201930_W_D'
+where cm.course_id like 'S-BMS291_2019%'
 
 /*
 where (course_id like 'S-NRS%' or

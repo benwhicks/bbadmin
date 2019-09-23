@@ -1,4 +1,7 @@
-/* Needs to be run on stats db to catch historical data. This means course_contents is not available */
+/* Needs to be run on stats db to catch historical data. This means course_contents is not available
+
+   Might be better to use the ods_aa_content_activity table?
+   */
 select u.student_id as id,
        aa.timestamp, cm.course_id as subject_code, cm.course_name as subject,
        u.firstname, u.lastname, cu.role,
