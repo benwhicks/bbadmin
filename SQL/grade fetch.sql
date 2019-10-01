@@ -9,6 +9,5 @@ from gradebook_type gt
     inner join course_users cu on cm.pk1 = cu.crsmain_pk1
     inner join users u on cu.users_pk1 = u.pk1
 where cm.course_id like 'S-BMS171_201930_A_I%'
-  --and cu.row_status = 0
   and cu.role = 'S'
 order by user_id, attempt_date

@@ -13,13 +13,13 @@ from course_main cm inner join course_users cu on cm.pk1 = cu.crsmain_pk1
 inner join users u on u.pk1 = cu.users_pk1
 inner join gradebook_main gm on cm.pk1 = gm.crsmain_pk1
 inner join gradebook_grade gg on gm.pk1 = gg.gradebook_main_pk1 and gg.course_users_pk1 = cu.pk1
-where t.name like '201930%' and
+where t.name like '201930%' --and
 --      cu.role like 'S' and cu.row_status = 0 and
   /*    (cm.course_id like 'S-COM173%%' or
        cm.course_id like 'S-EED173%' or
        cm.course_id like 'S-ESL172%' or
        cm.course_id like 'S-STA172%') */
-    (cm.course_id like '%SCI101%' or
+  /*  (cm.course_id like '%SCI101%' or
 cm.course_id like '%BIO100%' or
 cm.course_id like '%AHT101%' or
 cm.course_id like '%AGB165%' or
@@ -108,4 +108,16 @@ cm.course_id like '%WEL218%' or
 cm.course_id like '%IKC101%' or
 cm.course_id like '%IKC100%' or
 cm.course_id like '%INF111%'
-)
+) */
+
+select u.student_id as id,
+       cm.course_id as subject_code,
+       cm.course_name as subject,
+       gm.title as assessment,
+       ggc.score, ggc.possible
+from gradebook_grade_calc ggc
+inner join gradebook_main gm on ggc.gradebook_main_pk1 = gm.pk1
+inner join course_users cu on ggc.course_users_pk1 = cu.pk1
+inner join course_main cm on cu.crsmain_pk1 = cm.pk1
+inner join users u on cu.users_pk1 = u.pk1
+where cm.course_id like 'S-%201930%'

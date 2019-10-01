@@ -1,3 +1,4 @@
+
 select distinct course_id as subject,
        fm.name as forum, fm.description as forum_description,
        fm.post_first as forum_post_method, -- N for regular, F for post first, T for reply or post first
@@ -8,7 +9,8 @@ select distinct course_id as subject,
         concat(in_reply_to.firstname, ' ', in_reply_to.lastname) as reply_to,
         threader.user_id as threader_user_id,
         concat(threader.firstname, ' ', threader.lastname) as threader,
-       mm.msg_text, mm.hit_count, mm.posted_date
+       mm.msg_text,
+      mm.hit_count, mm.posted_date
 
 from forum_main fm
     inner join msg_main mm on fm.pk1 = mm.forummain_pk1

@@ -3,7 +3,7 @@
 */
 SELECT
        firstname, lastname, id,
-       subject_name, subject_code,
+       subject_name as subject, subject_code,
        child_subject_code,
        status,
        total_access_minutes,
@@ -27,4 +27,4 @@ FROM (SELECT
 WHERE cu.role = 'S'
   group by firstname, lastname, id, subject_code, subject_name, status, child_subject_code) SQ1
 
-WHERE subject_code like 'S-%201930%' and status = 0 and lastname not like '%PreviewUser' and id is not null
+WHERE subject_code like 'S-%201930%' and lastname not like '%PreviewUser'
