@@ -22,5 +22,12 @@ from users u
   left join course_main cmchild on cmchild.pk1 = cu.child_crsmain_pk1
   left join ods_aa_content_activity oaca on oaca.user_pk1 = u.pk1 and oaca.course_pk1 = cm.pk1
 
-where cm.course_id like 'S-%201990%'
+where         --cm.course_id like 'S-%202015%'
+     (cm.course_id like 'S-%202008%' or
+        cm.course_id like 'S-%202012%' or
+        cm.course_id like 'S-%202032%' or
+        cm.course_id like 'S-%202042%' or
+        cm.course_id like 'S-%202052%' or
+        cm.course_id like 'S-%202072%' or
+        cm.course_id like 'S-%202082%')
   and u.lastname not like '%PreviewUser'

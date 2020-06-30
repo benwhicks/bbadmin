@@ -33,3 +33,27 @@ ggraph(cc_graph, layout = "nicely") +
   geom_node_text(aes(label = site, alpha = hits), repel = T) +
   scale_alpha(guide = "none") +
   theme_graph()
+
+
+# Request for Schoon
+library(tidyverse)
+s <- "{\"handler\":\"resource/x-bb-document\",\"title\":\"CT Abdomen Prac/Study resource\",\"parent\":\"_2933127_1\",\"synthetic\":false}"
+trim_data <- function(s) {
+  return(s %>% 
+           str_remove('^\\{.*title":"') %>% 
+           str_remove('",.*\\}$'))
+}
+trim_data(s)
+aa_all <- read_csv(file.path('~', 'Data', 'ad hoc', 'aa MRS 2019.csv'),
+               col_types = 'cTccccnncccn')
+aa <- aa_all %>% 
+  mutate(data = trim_data(data))
+
+aa_summary <- aa %>% 
+  group_by(subject_code, subject, data) %>% 
+  summarise(
+    accesses = n(),
+    users = n_distinct(id)
+  )
+
+write_csv(aa_summary, file.path('~', 'Data', 'ad hoc', 'MRS 2019 activity summary.csv'))

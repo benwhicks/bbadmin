@@ -1,0 +1,70 @@
+---
+output: pdf_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+u <- function(x, ...){unique(select(x, ...))}
+nu <- function(x, ...){nrow(u(x, ...))}
+```
+
+``` {r loading}
+library(tidyverse)
+library(lubridate)
+dat_raw <- read_csv(file.path('~', 'Data', 'ad hoc', 'Parent_Child_Course_Relationships.csv')) 
+```
+
+```{r logo, out.width = "30px", fig.align='right'}
+knitr::include_graphics("CSU_logo.png")
+```
+
+``` {r analysis}
+dat <- dat_raw %>%
+  separate(subject_code, into = c("subject", "session", "campus", "mode"), sep = "_") %>% 
+  mutate(subject = str_remove(subject, "S-"),
+         merged = ifelse(is.na(child_code), 0, 1)) %>%
+  select(subject, session, merged) %>% unique() %>% 
+  mutate(session = as.integer(session)) %>% 
+  group_by(subject, session) %>% 
+  mutate(merged = max(merged, na.rm = T))
+
+dat_202030 <- dat %>% filter(session == 202030)
+```
+
+_How many merged subjects are there?_
+
+__In session 202030 `r round(100 * mean(dat_202030$merged), 1)`% of subjects were merged__. This was `r nrow(dat_202030 %>% filter(merged > 0.5))` of`r nrow(dat_202030 %>% filter(merged <= 0.5))` subjects. This compares to a a historical average of `r round(100 * mean(dat$merged), 1)`% merged subjects.
+
+## Merged subjects - by session
+
+``` {r}
+dat %>% 
+  filter(session %% 10 == 0) %>% 
+  group_by(session) %>% 
+  summarise(subjects = n(),
+            merged = paste0(round(100*mean(merged, na.rm = T),1), "%")
+            ) %>% 
+  arrange(session) %>% 
+  knitr::kable()
+```
+
+
+### SQL
+
+``` {sql, eval = F, echo = TRUE}
+with q1 as (
+    select cm.course_id as subject_code
+    from course_main cm
+    where cm.course_id like 'S-%'
+), q2 as (
+    select cmchild.course_id as child_code,
+           cmparent.course_id as parent_code
+    from course_course cc
+        inner join course_main cmchild on cc.crsmain_pk1 = cmchild.pk1
+        inner join course_main cmparent on cc.crsmain_parent_pk1 = cmparent.pk1
+    )
+select *
+from q1 left outer join q2 on subject_code = child_code
+```

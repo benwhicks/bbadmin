@@ -1,0 +1,77 @@
+---
+title: "Blackboard Outage Investigation"
+date: "2020-05-29"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = F, message = F)
+```
+
+``` {r loading}
+library(tidyverse)
+library(knitr)
+library(lubridate)
+
+datdir <- file.path('~', 'Data', 'ad hoc')
+
+day2 <- lubridate::as_date('2020-04-07')
+day1 <- lubridate::as_date('2020-04-06')
+
+aa <- read_csv(file.path(datdir, 'aa_Bb Down Investigation_2020-05-29.csv'))
+gl <- read_csv(file.path(datdir, 'gl BbOutage 2020-05-29.csv')) %>% 
+  mutate(timestamp = date_logged)
+cnum <- read_csv(file.path(datdir, 'cnum BbOutage 2020-05-29.csv'))
+cc <- read_csv(file.path(datdir, 'cc BbOutage 2020-05-29.csv')) %>% 
+  mutate(timestamp = dtmodified)
+
+filter_window <- function(x) {
+  bind_rows(
+    x %>% 
+      filter(
+        timestamp >= as_datetime('2020-04-06 10:20:00'),
+        timestamp <= as_datetime("2020-04-06 11:15:00")
+      ),
+    x %>% 
+      filter(
+        timestamp >= as_datetime('2020-04-07 11:10:00'),
+        timestamp <= as_datetime("2020-04-07 12:00:00")
+      )
+  )
+}
+```
+
+This explores the outages to Blackboard on `r day1` around 10:45 AM and `r day2` around 11:30 AM.
+
+``` {r likely}
+cnum %>% 
+  kable(caption = "Likely subject site culprits")
+```
+
+In summary nothing consistent happened in either the gradebook logs or the activity accumulator in those times (tables below). However in the first incident there was some Gradebook activity around 10:45. 
+
+``` {r gb_logs}
+gl %>% 
+  filter_window() %>% 
+  arrange(timestamp) %>% 
+  select(subject = course_name, title, first = modifier_firstname, last = modifier_lastname, timestamp) %>% 
+  kable(caption = "Gradebook log events")
+```
+
+
+``` {r aa_logs}
+aa %>% 
+  filter_window() %>% 
+  arrange(timestamp) %>% 
+  select(subject, firstname, lastname, role, event_type, title, timestamp) %>% 
+  kable(caption = "Activitvy accumulator")
+```
+
+``` {r cc_logs}
+cc %>% 
+  filter_window() %>% 
+  arrange(timestamp) %>% 
+  select(subject = course_name, title, timestamp) %>% 
+  kable(caption = "Course content changes")
+```
+

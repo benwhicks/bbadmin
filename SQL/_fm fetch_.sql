@@ -6,7 +6,7 @@ select distinct
     coalesce(childcm.course_id, cm.course_id) AS subject_code,
     coalesce(cm.course_id) AS subject_site_code, -- will be different to subject_code only if site merged
     fm.name as forum,
-    u.user_id as poster_user_id,
+    u.user_id as poster_user_id, u.student_id,
     cu.role as poster_role,
     concat(u.firstname, ' ', u.lastname) as poster,
     in_reply_to.user_id as reply_to_user_id,
@@ -25,4 +25,4 @@ from forum_main fm
     left outer join users as in_reply_to on msg_main_reply_to.users_pk1 = in_reply_to.pk1
     left outer join users as threader on msg_main_thread.users_pk1 = threader.pk1
 
-where cm.course_id like 'S-%201960%'
+where cm.course_id like 'S%201930%'
