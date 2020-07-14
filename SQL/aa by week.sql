@@ -1,7 +1,7 @@
 /*
 Fetches basic activity data for the first 4 weeks of term.
 
-Weeks returned as an integer from the beginning of year, will need to be adjusted later.
+Weeks returned a difference between start date, which must be entered into the code manually.
 
 Run on the stats schema. Change the cm.course_id to catch different terms.
 */
@@ -13,7 +13,7 @@ select
   coalesce(cm.course_id) AS subject_site_code, -- will be different to subject_code only if site merged
   cu.role,
   --max(cu.row_status) as row_status_max, -- might be better to get this in a separate query
-  trunc(date_part('day' , oaca.initial_datetime_access - '2019-11-18'::timestamp)/7) as week,
+  trunc(date_part('day' , oaca.initial_datetime_access - '2018-11-12'::timestamp)/7) as week,
   --date(oaca.initial_datetime_access) as date,
   sum(oaca.access_minutes) as minutes,
   sum(oaca.content_access_starts) as views,
@@ -25,7 +25,7 @@ from users u
     left join course_main cmchild on cmchild.pk1 = cu.child_crsmain_pk1
   left join ods_aa_content_activity oaca on oaca.user_pk1 = u.pk1 and oaca.course_pk1 = cm.pk1
 
-where (cm.course_id like 'S-%201990_B%')
+where (cm.course_id like 'S-%201890%')
   /*(cm.course_id like 'S-%202030_P%' or
       cm.course_id like 'S-%202030_Q%' or
       cm.course_id like 'S-%202030_R%' or

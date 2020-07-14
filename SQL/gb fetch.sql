@@ -10,7 +10,8 @@ from gradebook_grade_calc ggc
     inner join course_users cu on ggc.course_users_pk1 = cu.pk1
     inner join course_main cm on cu.crsmain_pk1 = cm.pk1
     inner join users u on cu.users_pk1 = u.pk1
-where cm.course_id like 'S-%201930%'
+where cm.course_id like 'S-%201930%' and
+      gm.title like '%xam%'
 
 
 /* Individual gb fetch */

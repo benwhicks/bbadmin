@@ -14,7 +14,8 @@ nu <- function(x, ...){nrow(u(x, ...))}
 library(tidyverse)
 library(lubridate)
 dat <- read_csv(file.path('~', 'Data', 'ad hoc', 'att 2020-06-23.csv')) %>% 
-  filter(str_detect(course_id, "^S-"))
+  filter(str_detect(course_id, "^O-")) %>% 
+  filter(!str_detect(course_id, "PPP|ILS|CONLAN"))
 ```
 
 ```{r logo, out.width = "30px", fig.align='right'}
@@ -27,7 +28,7 @@ __Yes, but only if you know the title of the exam item in Blackboard.__ There is
 
 ## Blackboard Exam Activity - Session 1 2020
 
-Data extracted on 2020-06-23 and this document generated on `r today()`. The main table used is the _attempt_ table in the DDA, 'test center' is a front end construct and does not appear explicitly in the activity data. Data was extracted for the dates of the examination window only (see SQL code at the end of this document) and entries filtered to only include _course_id_ beginning with _S-_.
+Data extracted on 2020-06-23 and this document generated on `r today()`. The main table used is the _attempt_ table in the DDA, 'test center' is a front end construct and does not appear explicitly in the activity data. Data was extracted for the dates of the examination window only (see SQL code at the end of this document) and entries filtered to only include _course_id_ beginning with _O-_ and excluding _PPP_, _ILS_ or _CONLAN_.
 
 Given this data set there are `r nu(dat, title)` items that received some kind of attempt from `r nu(dat, course_name)` subjects. Of these `r nrow(u(dat, title) %>% filter(str_detect(title, "[Ee]xam")))` include the text "Exam" in them, but `r nrow(u(dat, title) %>% filter(str_detect(title, "[Ee]xam")) %>% filter(str_detect(title, "[Pp]racti")))` of those also include the text "Practice" in them (allowing for different spellings of _practice_). We can then get a rough count of the unique id's that appear next to the remaining titles to match against expected attendance:
 
@@ -46,14 +47,14 @@ dat %>%
 dat %>% 
   group_by(course_name, course_id, firstname, lastname, student_id, title) %>% 
   summarise(last_date = max(attempt_date), number_of_attempts = n()) %>% 
-  write_csv(file.path('~', 'Data', 'ad hoc', 'exam att 202030 - full.csv'))
+  write_csv(file.path('~', 'Data', 'ad hoc', 'exam org att 202030 - full.csv'))
 
 dat %>% 
   filter(str_detect(title, "([Ee]xam)")) %>% 
   filter(!str_detect(title, "[Pp]racti[cs]e")) %>% 
   group_by(course_name, course_id, firstname, lastname, student_id, title) %>% 
   summarise(last_date = max(attempt_date), number_of_attempts = n()) %>% 
-  write_csv(file.path('~', 'Data', 'ad hoc', 'exam att 202030 - filtered.csv'))
+  write_csv(file.path('~', 'Data', 'ad hoc', 'exam org att 202030 - filtered.csv'))
 
 ```
 
