@@ -2,3 +2,4 @@
 
 select *
 from term
+where name like '202190'

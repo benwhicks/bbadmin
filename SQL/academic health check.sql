@@ -1,10 +1,10 @@
 
 /* This runs on the Learn Schema, and collects the data on grades and accesses */
 SELECT
-       concat(firstname, ' ', lastname) as student_name, lastname, firstname, id,
-       subject_name, subject_code,
-       lastaccess_course,
+       id, subject_code,  firstname, lastname, timestamp,
+       lastaccess_course, lastaccess_overall,
        date_part('day',  date_trunc('day', now() -max(lastaccess_course) ))  as days_since_last_access_course,
+       date_part('day', date_trunc('day', now() - max(lastaccess_overall) ))  as days_since_last_access_overall,
        max(score / (
            case
                when possible <= 0 then
@@ -15,11 +15,9 @@ SELECT
            )
            )
         as max_grade_so_far,
-
-       lastaccess_overall,
-       date_part('day', date_trunc('day', now() - max(lastaccess_overall) ))  as days_since_last_access_overall,
-       childcourse,
-       timestamp
+       childcourse, row_status,
+       subject_name,
+       replace(coalesce(childcourse, subject_code), 'S-', '') as offering
 FROM (SELECT
 
   t.name term_name,
@@ -47,11 +45,11 @@ FROM (SELECT
 
   WHERE cmparent.pk1 IS NULL and cu.role = 'S') SQ1
 
-WHERE subject_code like 'S-%202030%' and id is not null
-and row_status = 0 -- means students are definitely enrolled in a subject. 2 means they were previously enrolled.
-group by student_name, lastname, firstname, id,
-       subject_name, subject_code,
+WHERE subject_code like 'S-%202130%' and id is not null
+--and row_status = 0 -- means students are definitely enrolled in a subject. 2 means they were previously enrolled.
+group by id, firstname, lastname,
+       subject_name, subject_code, row_status,
        lastaccess_course,
             lastaccess_overall,
         childcourse, loracourse, timestamp
-ORDER BY subject_code, lastname, firstname
+ORDER BY subject_code

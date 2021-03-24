@@ -25,7 +25,7 @@ from users u
     left join course_main cmchild on cmchild.pk1 = cu.child_crsmain_pk1
   left join ods_aa_content_activity oaca on oaca.user_pk1 = u.pk1 and oaca.course_pk1 = cm.pk1
 
-where (cm.course_id like 'S-%202030_A%')
+where (cm.course_id like 'S-%202060%')
   /*(cm.course_id like 'S-%202030_P%' or
       cm.course_id like 'S-%202030_Q%' or
       cm.course_id like 'S-%202030_R%' or

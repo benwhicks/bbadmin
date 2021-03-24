@@ -12,6 +12,7 @@ select t.name as "session",
        cc.pk1 as content_pk1, -- to match with the activity accumulator
        cc.cnthndlr_handle as handle,
        cc.content_type as type,
+       cc.extended_data,
        cc.position,
        cc.title,
        cc.parent_pk1,
@@ -22,10 +23,4 @@ from course_contents cc
     inner join course_term ct on ct.crsmain_pk1 = cm.pk1
     inner join term t on ct.term_pk1 = t.pk1
 where       --cm.course_id like 'S-NRS111%'
-     (cm.course_id like 'S-%202008%' or
-        cm.course_id like 'S-%202012%' or
-        cm.course_id like 'S-%202032%' or
-        cm.course_id like 'S-%202042%' or
-        cm.course_id like 'S-%202052%' or
-        cm.course_id like 'S-%202072%' or
-        cm.course_id like 'S-%202082%')
+     (cm.course_id like 'S-%202090%')

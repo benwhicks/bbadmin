@@ -1,0 +1,74 @@
+---
+output: pdf_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = F, message = F)
+
+u <- function(x, ...){unique(select(x, ...))}
+nu <- function(x, ...){nrow(u(x, ...))}
+```
+
+``` {r loading}
+library(tidyverse)
+library(lubridate)
+datdir <- file.path('~', 'Data', 'ad hoc', 'exam analysis 202060')
+dat <- read_csv(file.path(datdir, 'att 202060 exam window.csv'))
+```
+
+![](banner.png)
+
+
+## Blackboard Exam Activity - Session 2 2020
+
+Data extracted on 2020-12-11 and this document generated on `r today()`. The main table used is the _attempt_ table in the DDA, 'test center' is a front end construct and does not appear explicitly in the activity data. Data was extracted for the dates of the examination window only (see SQL code at the end of this document) and entries filtered to only include _course_id_ beginning with _S-_.
+
+Given this data set there are `r nu(dat, title)` items that received some kind of attempt from `r nu(dat, course_name)` subjects. Of these `r nrow(u(dat, title) %>% filter(str_detect(title, "[Ee]xam")))` include the text "Exam" in them, but `r nrow(u(dat, title) %>% filter(str_detect(title, "[Ee]xam")) %>% filter(str_detect(title, "[Pp]racti")))` of those also include the text "Practice" in them (allowing for different spellings of _practice_). We can then get a rough count of the unique id's that appear next to the remaining titles to match against expected attendance:
+
+Generating summary table and filtering data
+
+``` {r attendance_counts, echo = T}
+dat %>% 
+  filter(str_detect(title, "([Ee]xam)")) %>% 
+  filter(!str_detect(title, "[Pp]racti[cs]e")) %>% 
+  u(student_id, course_name, title) %>%  
+  count(course_name, title) %>% 
+  arrange(desc(n))
+```
+
+``` {r export}
+dat %>% 
+  group_by(course_name, course_id, firstname, lastname, student_id, title) %>% 
+  summarise(last_date = max(attempt_date), number_of_attempts = n()) %>% 
+  write_csv(file.path(datdir, 'exam att 202060 - full.csv'))
+
+dat %>% 
+  filter(str_detect(title, "([Ee]xam)")) %>% 
+  filter(!str_detect(title, "[Pp]racti[cs]e")) %>% 
+  group_by(course_name, course_id, firstname, lastname, student_id, title) %>% 
+  summarise(last_date = max(attempt_date), number_of_attempts = n()) %>% 
+  write_csv(file.path(datdir, 'exam att 202030 - filtered.csv'))
+
+```
+
+
+### Code - SQL
+
+``` {sql, eval = F, echo = TRUE}
+select cm.course_name, cm.course_id,
+       gm.title, att.attempt_date,
+       u.student_id, u.firstname, u.lastname
+from attempt att
+  inner join gradebook_grade gg on att.gradebook_grade_pk1 = gg.pk1
+  inner join gradebook_main gm on gg.gradebook_main_pk1 = gm.pk1
+  inner join course_main cm on gm.crsmain_pk1 = cm.pk1
+  inner join course_users cu on cm.pk1 = cu.crsmain_pk1 and gg.course_users_pk1 = cu.pk1
+  inner join users u on cu.users_pk1 = u.pk1
+where
+      ((att.attempt_date >= '2020-08-17' and att.attempt_date <= '2020-08-21')
+           or
+       (att.attempt_date >= '2020-10-19' and att.attempt_date <= '2020-10-30'))
+  and cm.course_id like '%202060%'
+```
+

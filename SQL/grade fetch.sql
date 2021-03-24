@@ -12,22 +12,30 @@ where cm.course_id like 'S-BMS171_201930_A_I%'
   and cu.role = 'S'
 order by user_id, attempt_date
 
-select t.name as "Session",
-       cm.course_id as "Subject Id",
-       cm.course_name as "Subject Name",
-       concat(u.lastname, ', ', u.firstname) as "Student",
-       gm.title as "GC Column",
-       gg.up_average_score as "Attempt",
-       gg.manual_grade as "Manual Grade",
-       gg.manual_score as "Manual Score",
-       gg.average_score as "Score"
+select t.name as "session",
+       cm.course_id as "subject_site_code",
+       cm.course_name as "subject_name",
+       concat(u.lastname, ', ', u.firstname) as "student_name",
+       u.student_id as "id",
+       gm.title as "title",
+       gm.due_date,
+       gm.weight,
+       gm.visible_in_book_ind,
+       gm.visible_ind,
+       gm.aggregation_model,
+       gg.last_attempt_date,
+       gg.up_average_score as "attempt",
+       gg.average_score as "score",
+       gg.pk1, gg.highest_attempt_pk1,
+       gg.manual_grade as "manual_grade",
+       gg.manual_score as "manual_score"
 from course_main cm inner join course_users cu on cm.pk1 = cu.crsmain_pk1
   inner join course_term ct on ct.crsmain_pk1 = cm.pk1
   inner join term t on t.pk1 = ct.term_pk1
 inner join users u on u.pk1 = cu.users_pk1
 inner join gradebook_main gm on cm.pk1 = gm.crsmain_pk1
 inner join gradebook_grade gg on gm.pk1 = gg.gradebook_main_pk1 and gg.course_users_pk1 = cu.pk1
-where t.name like '201930%' --and
+where t.name like '2020%' --and
 --      cu.role like 'S' and cu.row_status = 0 and
   /*    (cm.course_id like 'S-COM173%%' or
        cm.course_id like 'S-EED173%' or

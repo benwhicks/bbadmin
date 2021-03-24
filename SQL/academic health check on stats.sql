@@ -31,6 +31,6 @@ FROM (SELECT
 WHERE cu.role = 'S'
   group by firstname, lastname, id, subject_code, subject_name, status, child_subject_code) SQ1
 
-WHERE subject_code like 'S-%201990%' and status = 0 and lastname not like '%PreviewUser' and id is not null
+WHERE subject_code like 'S-%202130%' and status = 0 and lastname not like '%PreviewUser' and id is not null
 
 ORDER BY subject_code
