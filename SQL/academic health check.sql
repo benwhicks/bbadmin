@@ -45,7 +45,7 @@ FROM (SELECT
 
   WHERE cmparent.pk1 IS NULL and cu.role = 'S') SQ1
 
-WHERE subject_code like 'S-%202130%' and id is not null
+WHERE subject_code like 'S-%202160%' and id is not null
 --and row_status = 0 -- means students are definitely enrolled in a subject. 2 means they were previously enrolled.
 group by id, firstname, lastname,
        subject_name, subject_code, row_status,

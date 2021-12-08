@@ -13,10 +13,5 @@ from course_main cm inner join course_users cu on cm.pk1 = cu.crsmain_pk1
 inner join users u on u.pk1 = cu.users_pk1
 where --t.name like '202015' and
       --cm.course_id like 'S-%202015%'
-     (cm.course_id like 'S-%202008%' or
-        cm.course_id like 'S-%202012%' or
-        cm.course_id like 'S-%202032%' or
-        cm.course_id like 'S-%202042%' or
-        cm.course_id like 'S-%202052%' or
-        cm.course_id like 'S-%202072%' or
-        cm.course_id like 'S-%202082%')
+    -- (cm.course_id like 'S-AHT101_202130%')
+u.student_id like '11715493'

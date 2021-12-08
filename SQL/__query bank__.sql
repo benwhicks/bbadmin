@@ -165,3 +165,6 @@ AND gm.deleted_ind = 'N'
 AND gm.scorable_ind = 'Y'
 AND gm.due_date IS NOT NULL
 ORDER BY u.user_id, cm.course_id, gm.due_date, gm.title, gm.pk1
+
+select distinct cu.role
+from course_users cu

@@ -5,4 +5,4 @@ select cm_child.course_id as subject_code,
 from course_course cc
 inner join course_main cm_child on cc.crsmain_pk1 = cm_child.pk1
 left join course_main cm_parent on cc.crsmain_parent_pk1 = cm_parent.pk1
-where cm_child.course_id like 'S-%201930%'
+where cm_child.course_id like 'S-%'

@@ -23,4 +23,4 @@ from course_contents cc
     inner join course_term ct on ct.crsmain_pk1 = cm.pk1
     inner join term t on ct.term_pk1 = t.pk1
 where       --cm.course_id like 'S-NRS111%'
-     (cm.course_id like 'S-%202090%')
+     (cm.course_id like 'S-ACC128_202160%')

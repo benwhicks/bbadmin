@@ -6,7 +6,7 @@ Run on the public schema.
 
 select u.student_id as id, u.user_id,
        cm.course_id as subject_code,
-       cm.course_name as subject,
+       cm.course_name as subject_name,
        gm.title as assessment,
        gm.due_date, gm.position,
        ggc.score, ggc.possible
@@ -26,7 +26,7 @@ from attempt att
 inner join gradebook_grade gg on att.gradebook_grade_pk1 = gg.pk1
     inner join gradebook_main gm on gg.gradebook_main_pk1 = gm.pk1
 inner join course_main cm on gm.crsmain_pk1 = cm.pk1
-where cm.course_id like 'S-BMS171_202030_A_D'
+where cm.course_id like 'S-BMS162_202160%'
 
 select distinct gm.title
 from gradebook_main gm
@@ -45,12 +45,14 @@ from gradebook_grade_calc ggc
     inner join course_users cu on ggc.course_users_pk1 = cu.pk1
     inner join course_main cm on cu.crsmain_pk1 = cm.pk1
     inner join users u on cu.users_pk1 = u.pk1
-where cm.course_id like 'S-%202030%'
+where cm.course_id like 'S-BMS162_202160%'
 
  /*
-  Fetch on the attempt table, even less aggrregated
+  Fetch on the attempt table, even less aggrregated.
+  Good for checking submissions for at risk process
   */
-select u.student_id, u.firstname, u.lastname, gm.title, cm.course_id,
+select u.student_id as id, u.user_id,
+       gm.title, cm.course_id,
        a.attempt_date, a.score, gm.possible, a.status, gm.pk1
 from attempt a
 inner join gradebook_grade gg on a.gradebook_grade_pk1 = gg.pk1
@@ -58,7 +60,7 @@ inner join gradebook_main gm on gg.gradebook_main_pk1 = gm.pk1
 inner join course_main cm on cm.pk1 = gm.crsmain_pk1
     inner join course_users cu on cm.pk1 = cu.crsmain_pk1 and gg.course_users_pk1 = cu.pk1
 inner join users u on cu.users_pk1 = u.pk1
-where cm.course_id like 'S-%202130%'
+where cm.course_id like 'S-IKC101_202190%'
 
 select u.student_id as id,
        cm.course_id as subject_code,
@@ -94,23 +96,6 @@ where u.firstname like 'Samuel' and u.lastname like 'Compton'
 
 
 /* Bulk grab of gradecentre */
-select distinct u.student_id, u.firstname, u.lastname, cm.course_id,
-                gm.title, gm.aggregation_model, gm.possible,
-       gm.calculated_ind,
-       ggc.score as score, ggc.possible as possible,
-       gt.calculated_ind
-from gradebook_grade_calc ggc inner join
-    gradebook_main gm on ggc.gradebook_main_pk1 = gm.pk1 inner join
-    gradebook_type gt on gm.gradebook_type_pk1 = gt.pk1 inner join
-    course_main cm on gm.crsmain_pk1 = cm.pk1 inner join
-    course_users cu on cm.pk1 = cu.crsmain_pk1 and ggc.course_users_pk1 = cu.pk1  inner join
-    users u on cu.users_pk1 = u.pk1
-where cm.course_id like 'S-%_2020%'
-limit 100
-
-
-
-/* Gradebook logs */
 select distinct cm.course_id, gm.title, gm.possible, u.student_id,
                 gl.event_key, gl.grade, gl.modifier_role,
                 mu.user_id as modifier_id, gl.modifier_ipaddress, gl.date_logged
@@ -122,3 +107,20 @@ from gradebook_log gl inner join
 where cm.course_id like 'S-%_2020%' and
       gl.grade is not null
 order by gl.date_logged
+
+
+
+/* Gradebook logs */
+select distinct u.student_id, u.firstname, u.lastname, cm.course_id,
+                gm.title, gm.aggregation_model, gm.possible,
+                gm.calculated_ind,
+                ggc.score as score, ggc.possible as possible,
+                gt.calculated_ind
+from gradebook_grade_calc ggc inner join
+     gradebook_main gm on ggc.gradebook_main_pk1 = gm.pk1 inner join
+     gradebook_type gt on gm.gradebook_type_pk1 = gt.pk1 inner join
+     course_main cm on gm.crsmain_pk1 = cm.pk1 inner join
+     course_users cu on cm.pk1 = cu.crsmain_pk1 and ggc.course_users_pk1 = cu.pk1  inner join
+     users u on cu.users_pk1 = u.pk1
+where cm.course_id like 'S-%_2020%'
+

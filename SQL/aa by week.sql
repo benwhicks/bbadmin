@@ -13,7 +13,7 @@ select
   coalesce(cm.course_id) AS subject_site_code, -- will be different to subject_code only if site merged
   cu.role,
   max(cu.row_status) as row_status_max, -- might be better to get this in a separate query
-  trunc(date_part('day' , oaca.initial_datetime_access - '2020-11-16'::timestamp)/7) as week,
+  trunc(date_part('day' , oaca.initial_datetime_access - '2021-03-01'::timestamp)/7) as week,
   --date(oaca.initial_datetime_access) as date,
   sum(oaca.access_minutes) as minutes,
   sum(oaca.content_access_starts) as views,
@@ -25,7 +25,7 @@ from users u
     left join course_main cmchild on cmchild.pk1 = cu.child_crsmain_pk1
   left join ods_aa_content_activity oaca on oaca.user_pk1 = u.pk1 and oaca.course_pk1 = cm.pk1
 
-where (cm.course_id like 'S-%202090%')
+where (cm.course_id like 'S-%201960%')
   /*(cm.course_id like 'S-%202030_P%' or
       cm.course_id like 'S-%202030_Q%' or
       cm.course_id like 'S-%202030_R%' or
